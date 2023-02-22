@@ -5,6 +5,8 @@ pub mod primitives {
 
     fn compute_frequency_from_period(p: &f32) -> f32 {
 
+        println!("Parsed period (s):     {}", p);
+
         if p < &0.0001 {
             eprintln!("Period is too small! Minimum period is 0.0001 seconds");
             std::process::exit(1);
@@ -14,6 +16,8 @@ pub mod primitives {
     }
 
     fn compute_capacitance_from_frequency(f: &f32) -> f32 {
+
+        println!("Parsed frequency (Hz): {}", f);
 
         if f < &0.0001 {
             eprintln!("Frequency is too small! Minimum frequency is 0.0001 Hz");
@@ -28,6 +32,6 @@ pub mod primitives {
         let f = compute_frequency_from_period(p);
         let c = compute_capacitance_from_frequency(&f);
 
-        println!("F: {}", c);
+        println!("Capacitance (F):       {}", c);
     }
 }
