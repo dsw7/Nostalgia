@@ -1,24 +1,34 @@
 mod helpers;
 mod math;
 
-fn get_period_from_cli() -> f32 {
+use clap::Parser;
 
-    let args: Vec<String> = std::env::args().collect();
+#[derive(Parser)]
+struct Args {
 
-    if args.len() != 2 {
-        eprintln!("Not enough arguments provided!");
-        std::process::exit(1);
-    }
+    /// Specify period obtained from oscilloscope
+    #[arg(short, long, default_value_t = 1.00)]
+    period: f32,
 
-    let p_usec = &args[1];
-    p_usec.parse::<f32>().unwrap()
+    /// Specify period units (s, ms, us)
+    #[arg(short, long, default_value_t = 's'.to_string())]
+    unit: String
 }
 
 fn main() {
 
-    let p_usec = get_period_from_cli();
-    let p = helpers::usec_to_sec(&p_usec);
+    let args = Args::parse();
 
-    let c = math::primitives::compute_capacitance_from_period(&p);
-    println!("{}", c);
+    if args.unit == "s" {
+        math::primitives::compute_capacitance_from_period(&args.period);
+    } else if args.unit == "ms" {
+        let p = helpers::msec_to_sec(&args.period);
+        math::primitives::compute_capacitance_from_period(&p);
+    } else if args.unit == "us" {
+        let p = helpers::usec_to_sec(&args.period);
+        math::primitives::compute_capacitance_from_period(&p);
+    } else {
+        eprintln!("Invalid unit. Valid units are s, ms and us");
+        std::process::exit(1);
+    }
 }

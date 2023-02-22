@@ -23,9 +23,11 @@ pub mod primitives {
         1.44 / (f * (R1 + 2. * R2))
     }
 
-    pub fn compute_capacitance_from_period(p: &f32) -> f32 {
+    pub fn compute_capacitance_from_period(p: &f32) {
 
         let f = compute_frequency_from_period(p);
-        compute_capacitance_from_frequency(&f)
+        let c = compute_capacitance_from_frequency(&f);
+
+        println!("F: {}", c);
     }
 }
