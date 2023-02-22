@@ -12,4 +12,12 @@ pub mod conversions {
         period / CONV_MICRO
     }
 
+    pub fn farad_to_uf(farads: &f32) -> f32 {
+        farads * CONV_MICRO
+    }
+
+    pub fn farad_to_nf(farads: &f32) -> f32 {
+        farads * CONV_NANO
+    }
+
 }

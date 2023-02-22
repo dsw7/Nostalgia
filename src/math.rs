@@ -33,5 +33,7 @@ pub mod primitives {
         let c = compute_capacitance_from_frequency(&f);
 
         println!("Capacitance (F):       {}", c);
+        println!("Capacitance (uF):      {}", helpers::conversions::farad_to_uf(&c));
+        println!("Capacitance (nF):      {}", helpers::conversions::farad_to_nf(&c));
     }
 }
