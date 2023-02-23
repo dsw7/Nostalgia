@@ -23,16 +23,15 @@ fn main() {
 
     let args = Args::parse();
 
-    if args.unit == "s" {
-        compute::compute_main(&args.period, &args.export);
-    } else if args.unit == "ms" {
-        let p = helpers::msec_to_sec(&args.period);
-        compute::compute_main(&p, &args.export);
-    } else if args.unit == "us" {
-        let p = helpers::usec_to_sec(&args.period);
-        compute::compute_main(&p, &args.export);
-    } else {
-        eprintln!("Invalid unit. Valid units are s, ms and us");
-        std::process::exit(1);
-    }
+    let period_secs = match args.unit.as_str() {
+        "s" => args.period,
+        "ms" => helpers::msec_to_sec(&args.period),
+        "us" => helpers::usec_to_sec(&args.period),
+        _ => {
+          eprintln!("Invalid unit. Valid units are s, ms and us");
+          std::process::exit(1);
+        },
+    };
+
+    compute::compute_main(&period_secs, &args.export);
 }
