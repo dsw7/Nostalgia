@@ -7,7 +7,7 @@ use clap::Parser;
 struct Args {
 
     /// Specify period obtained from oscilloscope
-    #[arg(short, long, default_value_t = 1.00)]
+    #[arg(short, long)]
     period: f32,
 
     /// Specify period units (s, ms, us)
