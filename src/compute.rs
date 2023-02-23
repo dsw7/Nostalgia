@@ -43,13 +43,16 @@ fn compute_capacitance_from_period(p: &f32) -> Results {
     }
 }
 
-pub fn compute_main(period: &f32) {
+pub fn compute_main(period: &f32, export: &bool) {
 
     let results = compute_capacitance_from_period(period);
 
-    println!("Parsed frequency (Hz): {}", results.frequency);
-    println!("Parsed period (s):     {}", results.period);
-    println!("Capacitance (F):       {}", results.cap_f);
-    println!("Capacitance (uF):      {}", results.cap_uf);
-    println!("Capacitance (nF):      {}", results.cap_nf);
+    if !export {
+        println!("Parsed frequency (Hz): {}", results.frequency);
+        println!("Parsed period (s):     {}", results.period);
+        println!("Capacitance (F):       {}", results.cap_f);
+        println!("Capacitance (uF):      {}", results.cap_uf);
+        println!("Capacitance (nF):      {}", results.cap_nf);
+        return;
+    }
 }
