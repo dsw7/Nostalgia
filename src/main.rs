@@ -20,13 +20,13 @@ fn main() {
     let args = Args::parse();
 
     if args.unit == "s" {
-        compute::compute_capacitance_from_period(&args.period);
+        compute::compute_main(&args.period);
     } else if args.unit == "ms" {
         let p = helpers::msec_to_sec(&args.period);
-        compute::compute_capacitance_from_period(&p);
+        compute::compute_main(&p);
     } else if args.unit == "us" {
         let p = helpers::usec_to_sec(&args.period);
-        compute::compute_capacitance_from_period(&p);
+        compute::compute_main(&p);
     } else {
         eprintln!("Invalid unit. Valid units are s, ms and us");
         std::process::exit(1);

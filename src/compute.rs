@@ -3,8 +3,6 @@ const R2: f32 = 21.5 * 1000.;
 
 fn compute_frequency_from_period(p: &f32) -> f32 {
 
-    println!("Parsed period (s):     {}", p);
-
     if p < &0.0001 {
         eprintln!("Period is too small! Minimum period is 0.0001 seconds");
         std::process::exit(1);
@@ -15,8 +13,6 @@ fn compute_frequency_from_period(p: &f32) -> f32 {
 
 fn compute_capacitance_from_frequency(f: &f32) -> f32 {
 
-    println!("Parsed frequency (Hz): {}", f);
-
     if f < &0.0001 {
         eprintln!("Frequency is too small! Minimum frequency is 0.0001 Hz");
         std::process::exit(1);
@@ -25,12 +21,35 @@ fn compute_capacitance_from_frequency(f: &f32) -> f32 {
     1.44 / (f * (R1 + 2. * R2))
 }
 
-pub fn compute_capacitance_from_period(p: &f32) {
+struct Results {
+    period: f32,
+    frequency: f32,
+    cap_f: f32,
+    cap_uf: f32,
+    cap_nf: f32,
+}
+
+fn compute_capacitance_from_period(p: &f32) -> Results {
 
     let f = compute_frequency_from_period(p);
     let c = compute_capacitance_from_frequency(&f);
 
-    println!("Capacitance (F):       {}", c);
-    println!("Capacitance (uF):      {}", crate::helpers::farad_to_uf(&c));
-    println!("Capacitance (nF):      {}", crate::helpers::farad_to_nf(&c));
+    Results {
+        period: *p,
+        frequency: f,
+        cap_f: c,
+        cap_uf: crate::helpers::farad_to_uf(&c),
+        cap_nf: crate::helpers::farad_to_nf(&c),
+    }
+}
+
+pub fn compute_main(period: &f32) {
+
+    let results = compute_capacitance_from_period(period);
+
+    println!("Parsed frequency (Hz): {}", results.frequency);
+    println!("Parsed period (s):     {}", results.period);
+    println!("Capacitance (F):       {}", results.cap_f);
+    println!("Capacitance (uF):      {}", results.cap_uf);
+    println!("Capacitance (nF):      {}", results.cap_nf);
 }
