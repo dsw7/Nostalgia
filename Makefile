@@ -27,4 +27,4 @@ build:
 
 test: build
 	$(call ECHO_STEP,Testing project using pytest)
-	@python3 -m pytest --verbose
+	@python3 -m pytest --verbose --capture=no
