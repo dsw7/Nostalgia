@@ -38,7 +38,7 @@ def compute_expected_capacitance(period: float) -> typing.Tuple[float, float, fl
     c = 1.44 / (f * (R1 + 2 * R2))
     return {'freq_in_hz': f, 'cap_in_f': c, 'cap_in_uf': c * 10 ** 6, 'cap_in_nf': c * 10 ** 9}
 
-@pytest.mark.parametrize('period', [5.00])
+@pytest.mark.parametrize('period', [0.01, 0.02, 0.1, 0.2, 1.0, 2.0, 10.0, 20.0, 100.0, 200.0])
 def test_valid_args(period: typing.List[float]) -> None:
 
     try:
