@@ -16,7 +16,8 @@ struct Args {
     #[arg(short, long, default_value_t = 's'.to_string())]
     unit: String,
 
-    /// Specify whether to export results to text file
+    /// Specify whether to export results to JSON file. File will be placed on host's temporary
+    /// directory
     #[arg(short, long, default_value_t = false)]
     export: bool,
 }
