@@ -4,7 +4,6 @@ import subprocess
 import pytest
 
 PATH_BINARY = os.path.join(os.getcwd(), 'target/debug/nos')
-PATH_RESULTS_FILE = '/tmp/nos.txt'
 R1 = 99.5 * 1000
 R2 = 21.5 * 1000
 
@@ -46,9 +45,14 @@ TEST_CASES_2 = [
 def test_valid_args(command: typing.List[str]) -> None:
 
     try:
-        subprocess.check_output(command, stderr=subprocess.PIPE)
+        output = subprocess.check_output(command, stderr=subprocess.PIPE)
     except subprocess.CalledProcessError as e:
         pytest.fail(f'Subprocess failed. Output was: {e.stderr.decode()}')
 
-    with open(PATH_RESULTS_FILE) as f:
-        print(f.read())
+#    path_results = output.decode().split()[-1]
+#    results = {}
+#
+#    with open(path_results) as f:
+#        for line in f.readlines()[2:]:
+#            result = line.split(': ')
+#            results[result[0]] = result[1].strip()
