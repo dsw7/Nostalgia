@@ -1,5 +1,7 @@
 mod compute;
+mod consts;
 mod helpers;
+mod routers;
 
 use clap::Parser;
 
@@ -33,5 +35,12 @@ fn main() {
         },
     };
 
-    compute::compute_main(&period_secs, &args.export);
+    let results = compute::compute_main(&period_secs);
+
+    if args.export {
+        routers::export_data_to_file(&results);
+    }
+    else {
+        routers::export_data_to_stdout(&results);
+    }
 }
