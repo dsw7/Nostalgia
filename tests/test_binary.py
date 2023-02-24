@@ -1,6 +1,7 @@
-import typing
+import json
 import os
 import subprocess
+import typing
 import pytest
 
 PATH_BINARY = os.path.join(os.getcwd(), 'target/debug/nos')
@@ -33,26 +34,25 @@ def test_invalid_period() -> None:
 
 def compute_expected_capacitance(period: float) -> typing.Tuple[float, float, float, float]:
 
-    frequency = 1 / period
-    capacitance = 1.44 / (frequency * (R1 + 2 * R2))
-    return frequency, capacitance, capacitance * 10 ** 6, capacitance * 10 ** 9
+    f = 1 / period
+    c = 1.44 / (f * (R1 + 2 * R2))
+    return {'freq_in_hz': f, 'cap_in_f': c, 'cap_in_uf': c * 10 ** 6, 'cap_in_nf': c * 10 ** 9}
 
-TEST_CASES_2 = [
-    [PATH_BINARY, '--period=5.00', '--export'],
-]
-
-@pytest.mark.parametrize('command', TEST_CASES_2, ids=[' '.join(s) for s in TEST_CASES_2])
-def test_valid_args(command: typing.List[str]) -> None:
+@pytest.mark.parametrize('period', [5.00])
+def test_valid_args(period: typing.List[float]) -> None:
 
     try:
-        output = subprocess.check_output(command, stderr=subprocess.PIPE)
+        output = subprocess.check_output([PATH_BINARY, f'--period={period}', '--export'], stderr=subprocess.PIPE)
     except subprocess.CalledProcessError as e:
         pytest.fail(f'Subprocess failed. Output was: {e.stderr.decode()}')
 
-#    path_results = output.decode().split()[-1]
-#    results = {}
-#
-#    with open(path_results) as f:
-#        for line in f.readlines()[2:]:
-#            result = line.split(': ')
-#            results[result[0]] = result[1].strip()
+    path_json = output.decode().split()[-1]
+    with open(path_json) as f:
+        results_nos = json.loads(f.read())
+
+    results_exp = compute_expected_capacitance(period)
+
+    assert pytest.approx(results_exp['freq_in_hz']) == results_nos['freq_in_hz']
+    assert pytest.approx(results_exp['cap_in_f']) == results_nos['cap_in_f']
+    assert pytest.approx(results_exp['cap_in_uf']) == results_nos['cap_in_uf']
+    assert pytest.approx(results_exp['cap_in_nf']) == results_nos['cap_in_nf']
