@@ -1,7 +1,5 @@
-const R1: f32 = 99.5 * 1000.;
-const R2: f32 = 21.5 * 1000.;
-
-use crate::consts::Results;
+use crate::consts::{Results, R1, R2};
+use crate::helpers::{farad_to_uf, farad_to_nf};
 
 fn compute_frequency_from_period(p: &f32) -> f32 {
 
@@ -32,7 +30,7 @@ pub fn compute_main(p: &f32) -> Results {
         period: *p,
         frequency: f,
         cap_f: c,
-        cap_uf: crate::helpers::farad_to_uf(&c),
-        cap_nf: crate::helpers::farad_to_nf(&c),
+        cap_uf: farad_to_uf(&c),
+        cap_nf: farad_to_nf(&c),
     }
 }
