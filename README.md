@@ -1,8 +1,8 @@
 # Nostalgia
 A small program for accurately measuring the capacitance of through-hole capacitors. Essentially, I just built
 an astable multivibrator (using an NE555P timer) and I connect any capacitor to the circuit. I then measure
-the period of the emitted square wave using an oscilloscope. This software then converts the extracted period
-to a capacitance value.
+the period of the emitted rectangular wave using an oscilloscope. This software then converts the extracted
+period to a capacitance value.
 ## Table of Contents
 - [Software](#software)
     - [Theory](#theory)
@@ -64,4 +64,10 @@ ground rail and the probe to the single pin header connected to pin 6. The final
 
 <p align="center">
   <img width="400" src=docs/assembled.png>
+</p>
+
+Upon supplying a voltage, a rectangular wave should trigger the scope:
+
+<p align="center">
+  <img width="400" src=docs/scope_52nf_example.png>
 </p>
