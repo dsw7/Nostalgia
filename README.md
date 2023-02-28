@@ -20,7 +20,13 @@ $$
 f = \frac{1.44}{C(R_1 + 2R_2)}
 $$
 
-This equation can be rearranged to solve for the capacitance, $C$:
+For the NE555P timer wired in an astable configuration:
+
+<p align="center">
+  <img width="200" src=docs/example_555_timer.png>
+</p>
+
+The above equation can be rearranged to solve for the capacitance, $C$:
 
 $$
 C = \frac{1.44}{f(R_1 + 2R_2)}
