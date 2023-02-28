@@ -12,8 +12,9 @@ period to a capacitance value.
 
 ## Software
 ### Theory
-The Texas Instruments datasheet for the NE555P timer states that the frequency $f$ of the output waveform
-follows:
+The [Texas Instruments datasheet for the NE555P
+timer](https://datasheet.octopart.com/NE555P-Texas-Instruments-datasheet-7284017.pdf) states that the
+frequency $f$ of the output waveform follows:
 
 $$
 f = \frac{1.44}{C(R_1 + 2R_2)}
