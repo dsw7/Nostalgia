@@ -38,7 +38,7 @@ $$
 f = 1 / p
 $$
 
-$R_1$ and $R_2$ were measured at 99.8 and 21.6 $k\Omega$, respectively. Therefore, the final equation becomes
+$R_1$ and $R_2$ were measured at 99.8 and 21.6 $k\Omega$, respectively. Therefore, the final equation becomes:
 
 $$
 C = \frac{1.44}{143000\Omega / p}
