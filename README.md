@@ -53,5 +53,5 @@ This command will run `cargo` under the hood and compile a binary named `nos` to
 Out of the box, a circuit board and two leads will be provided:
 
 <p align="center">
-  <img src=docs/preassembled.png>
+  <img width="400" src=docs/preassembled.png>
 </p>
