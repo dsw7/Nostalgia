@@ -6,7 +6,9 @@ to a capacitance value.
 ## Table of Contents
 - [Software](#software)
     - [Theory](#theory)
+    - [Setup](#setup)
 - [Hardware](#hardware)
+    - [Setup](#setup)
 
 ## Software
 ### Theory
@@ -35,8 +37,21 @@ $$
 C = \frac{1.44}{143000\Omega / p}
 $$
 
-Where $p$ is obtained directly from the oscilloscope and is measured in seconds.
+Where $p$ is obtained directly from the oscilloscope and is measured in seconds. The period is measured from
+the oscilloscope simply because the value tends to be more accurate at shorter timescales, at least for the
+Rigol DS1054Z.
+
+### Setup
+Ensure that Rust is installed. Then run:
+```
+make build
+```
+This command will run `cargo` under the hood and compile a binary named `nos` to `target/debug`.
+
 ## Hardware
+### Setup
+Out of the box, a circuit board and two leads will be provided:
+
 <p align="center">
-  <img width="200" src=docs/example_555_timer.png>
+  <img src=docs/preassembled.png>
 </p>
