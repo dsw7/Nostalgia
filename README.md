@@ -8,7 +8,7 @@ to a capacitance value.
     - [Theory](#theory)
     - [Setup](#setup)
 - [Hardware](#hardware)
-    - [Setup](#setup)
+    - [Usage](#usage)
 
 ## Software
 ### Theory
@@ -49,9 +49,19 @@ make build
 This command will run `cargo` under the hood and compile a binary named `nos` to `target/debug`.
 
 ## Hardware
-### Setup
-Out of the box, a circuit board and two leads will be provided:
+### Usage
+Out of the box, a circuit board and two leads ("minigrabbers") will be provided:
 
 <p align="center">
   <img width="400" src=docs/preassembled.png>
+</p>
+
+Connect the minigrabbers' female header to the 2-pin male header on the board. Then connect the minigrabbers
+to the capacitor being studied. Connect a supply voltage to the 3 pin header (the middle pin is unused). The
+recommended voltage is between 4.5 and 16V with an 18V absolute maximum, There is no limitation on current as
+the device will only draw as much current as it needs. Last, connect the oscilloscope ground lead to the
+ground rail and the probe to the single pin header connected to pin 6. The final assembly should follow:
+
+<p align="center">
+  <img width="400" src=docs/assembled.png>
 </p>
