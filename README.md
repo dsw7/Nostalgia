@@ -17,7 +17,7 @@ $$
 f = \frac{1.44}{C(R_1 + 2R_2)}
 $$
 
-This equation can be rearranged to extract solve for capacitance, $C$:
+This equation can be rearranged to solve for the capacitance, $C$:
 
 $$
 C = \frac{1.44}{f(R_1 + 2R_2)}
@@ -29,4 +29,14 @@ $$
 f = 1 / p
 $$
 
+$R_1$ and $R_2$ were measured at 99.8 and 21.6 $k\Omega$, respectively. Therefore, the final equation becomes
+
+$$
+C = \frac{1.44}{143000\Omega / p}
+$$
+
+Where $p$ is obtained directly from the oscilloscope and is measured in seconds.
 ## Hardware
+<p align="center">
+  <img width="200" src=docs/example_555_timer.png>
+</p>
