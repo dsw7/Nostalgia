@@ -69,5 +69,18 @@ ground rail and the probe to the single pin header connected to pin 6. The final
 Upon supplying a voltage, a rectangular wave should trigger the scope:
 
 <p align="center">
-  <img width="400" src=docs/scope_52nf_example.png>
+  <img src=docs/scope_52nf_example.png>
 </p>
+
+Note that 5.270 ms period measured by the scope. This value would be supplied to the binary:
+```
+$ /path/to/nos --period=5.270 --unit=ms
+```
+Which would return:
+```
+Parsed frequency (Hz): 189.75331
+Parsed period (s):     0.00527
+Capacitance (F):       0.000000053254745
+Capacitance (uF):      0.053254746
+Capacitance (nF):      53.254745
+```
