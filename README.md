@@ -51,9 +51,14 @@ Rigol DS1054Z.
 ### Setup
 Ensure that Rust is installed. Then run:
 ```
-make build
+make release
 ```
-This command will run `cargo` under the hood and compile a binary named `nos` to `target/debug`.
+This command will run `cargo` under the hood and compile an optimized binary named `nos` to `target/release`.
+For debugging purposes, a debug binary can be compiled instead:
+```
+make debug
+```
+An unoptimized binary named `nos` will be compiled to `target/debug`.
 
 ## Hardware
 ### Usage

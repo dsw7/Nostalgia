@@ -1,4 +1,4 @@
-.PHONY = help lint check debug release test
+.PHONY = help lint check debug release test clean
 
 .DEFAULT_GOAL = help
 
@@ -20,6 +20,8 @@ Compile a release binary
     $$ make release
 Build project and run tests
     $$ make test
+Remove target directory (in order to save space)
+    $$ make clean
 endef
 
 export HELP_LIST_TARGETS
@@ -46,3 +48,7 @@ release:
 test: debug
 	$(call ECHO_STEP,Testing project using pytest)
 	@python3 -m pytest --verbose --capture=no
+
+clean:
+	$(call ECHO_STEP,Removing "target" directory)
+	@cargo clean --verbose
