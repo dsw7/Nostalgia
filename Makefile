@@ -1,4 +1,4 @@
-.PHONY = help build test
+.PHONY = help lint check debug release test
 
 .DEFAULT_GOAL = help
 
@@ -10,8 +10,14 @@ define ECHO_STEP
 endef
 
 define HELP_LIST_TARGETS
-Build project
-    $$ make build
+Lint code
+    $$ make lint
+Check if project can compile
+    $$ make check
+Compile a debug binary
+    $$ make debug
+Compile a release binary
+    $$ make release
 Build project and run tests
     $$ make test
 endef
@@ -21,10 +27,22 @@ export HELP_LIST_TARGETS
 help:
 	@echo "$$HELP_LIST_TARGETS"
 
-build:
-	$(call ECHO_STEP,Building project using cargo)
+lint:
+	$(call ECHO_STEP,Linting project using cargo clippy)
+	@cargo clippy --verbose
+
+check:
+	$(call ECHO_STEP,Checking project using cargo)
+	@cargo check --verbose --jobs=12
+
+debug:
+	$(call ECHO_STEP,Compiling debug binary using cargo)
 	@cargo build --verbose --jobs=12
 
-test: build
+release:
+	$(call ECHO_STEP,Compiling release binary using cargo)
+	@cargo build --verbose --jobs=12 --release
+
+test: debug
 	$(call ECHO_STEP,Testing project using pytest)
 	@python3 -m pytest --verbose --capture=no
