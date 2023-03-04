@@ -7,14 +7,14 @@ pub fn export_data_to_file(results: &Results) {
 
     let mut outgoing = String::new();
 
-    outgoing.push_str("{");
+    outgoing.push('{');
     outgoing.push_str("\"description\":\"See https://github.com/dsw7/Nostalgia for more information\",");
     outgoing.push_str(&format!("\"freq_in_hz\":{},", results.frequency));
     outgoing.push_str(&format!("\"period_in_s\":{},", results.period));
     outgoing.push_str(&format!("\"cap_in_f\":{},", results.cap_f));
     outgoing.push_str(&format!("\"cap_in_uf\":{},", results.cap_uf));
     outgoing.push_str(&format!("\"cap_in_nf\":{}", results.cap_nf));
-    outgoing.push_str("}");
+    outgoing.push('}');
 
     let tmpdir = env::temp_dir();
     let export_path = Path::new(&tmpdir).join("nos.json");
