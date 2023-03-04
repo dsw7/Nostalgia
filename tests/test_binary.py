@@ -32,7 +32,7 @@ def test_invalid_period() -> None:
     else:
         pytest.fail('Did not raise CalledProcessError')
 
-def compute_expected_capacitance(period: float) -> typing.Tuple[float, float, float, float]:
+def compute_expected_capacitance(period: float) -> typing.Dict[str, float]:
 
     f = 1 / period
     c = 1.44 / (f * (R1 + 2 * R2))
