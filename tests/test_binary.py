@@ -39,7 +39,7 @@ def compute_expected_capacitance(period: float) -> typing.Dict[str, float]:
     return {'freq_in_hz': f, 'cap_in_f': c, 'cap_in_uf': c * 10 ** 6, 'cap_in_nf': c * 10 ** 9}
 
 @pytest.mark.parametrize('period', [0.01, 0.02, 0.1, 0.2, 1.0, 2.0, 10.0, 20.0, 100.0, 200.0])
-def test_valid_args(period: typing.List[float]) -> None:
+def test_valid_args(period: float) -> None:
 
     try:
         output = subprocess.check_output([PATH_BINARY, f'--period={period}', '--export'], stderr=subprocess.PIPE)
